@@ -29,7 +29,8 @@ namespace pd{
 		}
 
 		face_t roll( void ){
-			return dis( gen );
+			int value = dis( gen );
+			return value;
 		}
 	};
 }

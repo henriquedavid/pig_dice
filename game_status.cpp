@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 #include <iomanip>
+#include <iterator>
 
 void passUser();
 
@@ -41,11 +42,8 @@ namespace gs{
 
 			int pontA, pontB;
 
-			pontA = player1.getPontuacao();
-			pontB = player2.getPontuacao();
-
-			std::cout << "O Player1 tem = " << pontA
-					  << "\nO Player2 tem = " << pontB << std::endl;
+			pontA = pontos_game.getPont_J1();
+			pontB = pontos_game.getPont_J2();
 
 			if(pontA < 100 && pontB < 100){
 				state_game = 1;
@@ -105,8 +103,16 @@ namespace gs{
 					passUser();
 				}
 
-			} else{
+			} else if( acao == "Hold") {
+
 				passUser();
+
+			} else{
+				std::cout << "\nA ação não é válida!" << std::endl;
+				std::cout <<"Roll or Hold ?" << std::endl;
+				std::string valor;
+				std::cin >> valor;
+				action_Game(valor);
 			}
 		}
 
@@ -117,13 +123,15 @@ void render( gs::GameState &game){
 	int tam_total = game.player1.getNome().size() + 22;
 	std::cout << "+" << std::setw(tam_total) << std::setfill('-') << "+" << std::endl;
 	std::cout << " " << "Jogador" << std::setprecision(10) << std::setw(20) << std::setfill(' ') << "Placar" << std::endl;
-	std::cout << " " << game.player1.getNome() << std::setw(17) << std::setfill(' ') << game.player1.getPontuacao() << std::endl;
-	std::cout << " " << game.player2.getNome() << std::setw(14) << std::setfill(' ') << game.player2.getPontuacao() << std::endl;
+	std::cout << " " << game.player1.getNome() << std::setw(17) << std::setfill(' ') << game.pontos_game.getPont_J1() << std::endl;
+	std::cout << " " << game.player2.getNome() << std::setw(14) << std::setfill(' ') << game.pontos_game.getPont_J2() << std::endl;
 	std::cout << "+" << std::setw(tam_total) << std::setfill('-') << "+" << std::endl;
 }
 
 void process_events( gs::GameState &gameStart){
 	std::string recebe_acao = "Roll";
+
+	std::cout << std::endl;
 
 	std::cout << "Roll or Hold?" << std::endl;
 	
@@ -134,6 +142,8 @@ void process_events( gs::GameState &gameStart){
 	}
 
 	gameStart.action_Game(recebe_acao);
+
+	std::cout << std::endl;
 
 }
 
@@ -171,22 +181,60 @@ void render_welcome_msg( gs::GameState &gameStart){
 
 	std::cout << "# # #		Let the games begin		# # #\n\n";
 
-	std::cout << "INFORMAÇÕES SOBRE O JOGO" << std::endl;
+	std::cout << "INFORMAÇÕES SOBRE O JOGO\n" << std::endl;
 
-	std::cout << "Jogador 1: " << gameStart.player1.getNome() << std::endl
-			  << "Pontuacao = " << gameStart.player1.getPontuacao() << "\n\n" 
+	std::cout << "\nJogador 1: " << gameStart.player1.getNome() << std::endl
+			  << "Pontuacao = " << gameStart.pontos_game.getPont_J1() << "\n\n" 
 			  << "Jogador 2: " << gameStart.player2.getNome() << std::endl
-			  << "Pontuacao = " << gameStart.player2.getPontuacao() << std::endl;
+			  << "Pontuacao = " << gameStart.pontos_game.getPont_J2() << std::endl;
 
 
     std::cout << ">>> Jogador " << gameStart.estado_game.getJogador();
 }
 
 void render_winner( gs::GameState &gameStart ){
-	std::cout << "\n\n>>>>>>    TEMOS UM VENCEDOR    <<<<<<\n"
-			  << std::setw(40) << std::setfill('-') << "\n";
-	std::cout << std::setw(40) <<gameStart.estado_game.getJogador() << std::endl;
-	std::cout << std::setw(40) << std::setfill('*') << std::endl;
+	std::string nomeJWinner;
+	nomeJWinner = gameStart.estado_game.getJogador();
+	std::cout << "\n\n>>>>>>    TEMOS UM VENCEDOR    <<<<<<\n";
+	std::cout << "Vencedor:" << nomeJWinner << std::endl;
+	std::cout << "Ganhou com " ;
+
+	if( nomeJWinner == gameStart.player1.getNome())
+		std::cout << gameStart.pontos_game.getPont_J1();
+	else
+		std::cout << gameStart.pontos_game.getPont_J2();
+
+	std::cout << " pontos." << std::endl;
+
+	std::cout << "Valores inseridos por " << gameStart.player1.getNome() << std::endl;
+	std::cout << " [ ";
+	std::vector<int> v1;
+	std::vector<int> v2;
+	v1 = gameStart.pontos_game.getL1();
+	v2 = gameStart.pontos_game.getL2();
+	std::copy( v1.begin(), v1.end(), std::ostream_iterator<int>( std::cout, " "));
+	std::cout << "]" << std::endl;
+
+	std::cout << "Valores inseridos por " << gameStart.player2.getNome() << std::endl;	
+	std::cout << " [ ";
+	std::copy( v2.begin(), v2.end(), std::ostream_iterator<int>( std::cout, " "));
+	std::cout << "]" << std::endl;
+}
+
+void update( gs::GameState &gameStart){
+
+	int pont_jogador_1 = gameStart.player1.getPontuacao();
+	int pont_jogador_2 = gameStart.player2.getPontuacao();
+
+	gameStart.pontos_game.addPont_J1(pont_jogador_1);
+	gameStart.pontos_game.addPont_J2(pont_jogador_2);
+
+	gameStart.add_pontos_all(pont_jogador_1, pont_jogador_2);
+
+	gameStart.player1.setPontuacao(0);
+	gameStart.player2.setPontuacao(0);
+
+
 }
 
 
@@ -200,6 +248,7 @@ int main( void ){
 
 	while( game_over( gas ) != 3){
 		process_events( gas );
+		update( gas );
 		render( gas );
 	}
 
