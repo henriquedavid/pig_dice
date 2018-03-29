@@ -1,9 +1,3 @@
-/*#include <iostream>
-#include <string>
-#include <vector>
-
-#include "player.h"*/
-
 namespace pt{
 	struct Pontos
 	{
@@ -38,9 +32,18 @@ namespace pt{
 			player.setPontuacao(value);
 		}
 
+		/*
 		void setPontos(int p_jogador1, int p_jogador2){
 			pontuacoes_jogador1.push_back(p_jogador1);
 			pontuacoes_jogador2.push_back(p_jogador2);
+		}*/
+
+		void addPointL1(int valor){
+			pontuacoes_jogador1.push_back(valor);
+		}
+
+		void addPointL2( int valor ){
+			pontuacoes_jogador2.push_back(valor);
 		}
 
 		lista getL1(){
@@ -53,19 +56,3 @@ namespace pt{
 		
 	};
 }
-/*
-int main(){
-
-	pl::Player pl;
-	pt::Pontos pntos;
-
-	pl.player_info("Henrique", "Humano");
-	pntos.addPoint(pl, 10);
-
-	std::cout << "O nome do jogador 1 é " << pl.getNome() << std::endl
-			  << "A pontuacao é " << pl.getPontuacao() << std::endl;
-
-
-
-	return 0;
-}*/

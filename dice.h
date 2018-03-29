@@ -1,6 +1,3 @@
-//#include <random>
-//#include <iostream>
-
 namespace pd{
 	struct Dice{
 
@@ -30,22 +27,9 @@ namespace pd{
 
 		face_t roll( void ){
 			int value = dis( gen );
+			if(value == 0)
+				return roll();
 			return value;
 		}
 	};
 }
-/*
-using namespace pd;
-
-int main( void ){
-	Dice d6;
-	Dice coin;
-
-	d6.set_dice( 6, Dice::seed_type_e::CLIENT_DEFINED, 1);
-	coin.set_dice( 2 );
-
-	for( auto i(0) ; i < 10 ; ++i)
-		std::cout << " face: " << d6.roll() << "\n";
-
-	return 0;
-}*/

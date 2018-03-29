@@ -1,5 +1,3 @@
-//#include <iostream>
-
 namespace gm{
 	struct Estado
 	{
@@ -18,13 +16,3 @@ namespace gm{
 
 	};
 }
-/*
-
-int main(){
-
-	gm::Estado estado;
-
-
-
-	return 0;
-}*/

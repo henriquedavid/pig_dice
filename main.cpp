@@ -1,24 +1,21 @@
-#include <random>
 #include <iostream>
 
-#include "pig_dice.h"
+#include "funcoes.h"
 
-using namespace pd;
-
-int main( void )
+int main( )
 {
-	pd::GameState gs;
+	gs::GameState gas;
 
-	initialize_game( gs );
-	render_welcome_msg( gs );
+	initialize_game( gas );
+	render_welcome_msg( gas );
 
-	while( game_over( gs ) != 3 ){
-		process_events( gs );
-		update( gs );
-		render( gs );
+	while( game_over( gas ) != 3 ){
+		process_events( gas );
+		update( gas );
+		render( gas );
 	}
 
-	render_winner( gs );
+	render_winner( gas );
 
 	return 0;
 }

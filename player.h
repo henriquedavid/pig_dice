@@ -1,8 +1,3 @@
-//#include <iostream>
-//#include <string>
-
-int rollDice();
-
 namespace pl{
 	struct Player
 	{
@@ -49,24 +44,3 @@ namespace pl{
 
 	};
 }
-/*
-using namespace pl;
-
-int main(){
-
-	pl::Player play;
-
-	std::string nome;
-
-	std::cout << "Insira o nome do jogador: " << std::endl;
-	std::cin >> nome;
-
-	play.player_info(nome, "Humano");
-
-	auto nome1 = play.getNome();
-	auto tipo = play.getTipo();
-
-	std::cout << " ------------------- ------------------------" << std::endl;
-	std::cout << "O nome do jogador é " << nome1 << " e ele é " << tipo << std::endl;
-	return 0;
-}*/
