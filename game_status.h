@@ -2,25 +2,27 @@ namespace gs{
 	struct GameState
 	{
 
+		// Alias
 		using names = std::string;
 		typedef size_t face_t;
 		typedef size_t seed_t;
 
 		enum class seed_type_e : short int { RANDOM = 0, CLIENT_DEFINED};
 
-		pl::Player player1;
-		pl::Player player2;
+		// Declaraoes
+		pl::player player1;		// declara um jogador 1
+		pl::Player player2;		// declara jogador 2
 
-		pd::Dice dice;
+		pd::Dice dice;		// declara o jogo
 
-		pt::Pontos pontos_game;
+		pt::Pontos pontos_game;		// gerar placar
 
-		gm::Estado estado_game;
-
+		gm::Estado estado_game;		// gerar os estados do jogo
 
 		int state_game = -1;	// 0 - Inicia | 1 - Jogador 1 | 2 - Jogador 2 | 3 - Game Over
-		
 
+		// Métodos
+		
 		// Recebe qual o estado atual do jogo
 		void stateGame(){
 
@@ -42,16 +44,6 @@ namespace gs{
 			state_game = estado_muda;
 		}
 
-		// Adiciona pontos a um determinado jogador
-		void addPoints(pl::Player &pl, int ponto){
-			pontos_game.addPoint(pl, ponto);
-		}
-
-		// Adiciona os pontos de cada rodada de todos os 2 jogadores
-		/*void add_pontos_all(int p1, int p2){
-			pontos_game.setPontos(p1, p2);
-		}*/
-
 		// Joga o dado.
 		int rollDice(){
 			return dice.roll();
@@ -65,8 +57,6 @@ namespace gs{
 				estado_game.setJogador( player2 );
 			else
 				estado_game.setJogador( player1 );
-
-
 		}
 
 		// Atribui uma ação, rolar ou passar a vez.
