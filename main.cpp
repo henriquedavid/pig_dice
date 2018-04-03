@@ -9,7 +9,7 @@ int main( )
 	initialize_game( gas );
 	render_welcome_msg( gas );
 
-	while( game_over( gas ) != 3 ){
+	while( game_over( gas ) ){
 		process_events( gas );
 		update( gas );
 		render( gas );

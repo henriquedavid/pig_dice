@@ -1,3 +1,5 @@
+// Arquivo relacinado aos dados de cada jogador
+
 namespace pl{
 	struct Player
 	{

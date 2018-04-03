@@ -1,6 +1,9 @@
+// Arquivo relacionado ao dado.
+
 namespace pd{
 	struct Dice{
 
+		// ALIAS
 		typedef size_t face_t;
 		typedef size_t seed_t;
 
@@ -9,9 +12,12 @@ namespace pd{
 		std::mt19937 gen;
 		std::uniform_int_distribution<int> dis;
 
-		void set_dice( size_t n_faces = 2, seed_type_e st = seed_type_e::RANDOM, seed_t seed = 1){
+		// MÉTODOS
+		// Configura o dado
+		void set_dice( size_t n_faces = 6, seed_type_e st = seed_type_e::RANDOM, seed_t seed = 1){
 			auto my_seed( seed );
 
+			// Verifica se o tipo escolhido é do tipo randomico
 			if( st == seed_type_e::RANDOM)
 			{
 				std::random_device rd;
@@ -25,6 +31,7 @@ namespace pd{
 			dis.param( p );
 		}
 
+		// "Joga" o dado
 		face_t roll( void ){
 			int value = dis( gen );
 			if(value == 0)

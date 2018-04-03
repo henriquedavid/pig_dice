@@ -21,7 +21,7 @@ namespace gs{
 
 		sys::IA IA_game;
 
-		int state_game = 0;	// 0 - Inicia | 1 - Jogador 1 | 2 - Jogador 2 | 3 - Game Over
+		int state_game = true;	// 0 - Inicia | 1 - Jogador 1 | 2 - Jogador 2 | 3 - Game Over
 
 		int ultimo_valor = 0;
 
@@ -40,9 +40,9 @@ namespace gs{
 			pontB = pontos_game.getPont_J2();
 
 			if(pontA < 100 && pontB < 100){
-				state_game = 1;
+				state_game = true;
 			} else{
-				state_game = 3;
+				state_game = false;
 			}
 
 		}

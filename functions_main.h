@@ -1,4 +1,6 @@
+// Arquivo relacionado as funções principais do jogo
 
+// Função gera o placar do jogo
 void render( gs::GameState &game){
 	int tam_total = game.player1.getNome().size() + 22;
 	std::cout << "+" << std::setw(tam_total) << std::setfill('-') << "+" << std::endl;
@@ -8,13 +10,19 @@ void render( gs::GameState &game){
 	std::cout << "+" << std::setw(tam_total) << std::setfill('-') << "+" << std::endl;
 }
 
+//Permite ao jogador escolher entre jogar ou passar
 void process_events( gs::GameState &gameStart){
+
+	std::string jogadorAtual = gameStart.estado_game.getJogador();
+	std::cout << "JOGADOR ATUAL = " << jogadorAtual << std::endl;
+
 	std::string recebe_acao = "Roll";
 
 	std::cout << std::endl;
 
 	std::cout << "Roll or Hold?" << std::endl;
 	
+	// Verifica se é o jogador ou a IA Jogadora
 	if( gameStart.estado_game.getJogador() == gameStart.player1.getNome() ){
 	
 		std::cin >> recebe_acao;
@@ -31,6 +39,8 @@ void process_events( gs::GameState &gameStart){
 
 }
 
+
+// Inicializa o jogo
 void initialize_game( gs::GameState &gameStart){
 
 	gameStart.player1.setPontuacao(0);
@@ -41,16 +51,18 @@ void initialize_game( gs::GameState &gameStart){
 
 	gameStart.estado_game.setJogador(gameStart.player1);
 
-	gameStart.changeState( 0 );
+	gameStart.changeState( true );
 }
 
-int game_over( gs::GameState &gameStart){
+// Verifica se há um ganhador
+bool game_over( gs::GameState &gameStart){
 
 	gameStart.stateGame();
 
 	return gameStart.state_game;
 }
 
+// Tela de confuguracoes iniciais do jogo
 void render_welcome_msg( gs::GameState &gameStart){
 
 	std::cout << " > > > > >   PIG DICE   < < < < < \n" << std::endl;
@@ -74,13 +86,9 @@ void render_welcome_msg( gs::GameState &gameStart){
 			  << "Jogador 2: " << gameStart.player2.getNome() << std::endl
 			  << "Pontuacao = " << gameStart.pontos_game.getPont_J2() << std::endl;
 
-
-
-    std::cout << ">>> Jogador " << gameStart.estado_game.getJogador();
-
-
 }
 
+// Resultado do vencedor
 void render_winner( gs::GameState &gameStart ){
 	std::string nomeJWinner;
 	nomeJWinner = gameStart.estado_game.getJogador();
@@ -110,6 +118,7 @@ void render_winner( gs::GameState &gameStart ){
 	std::cout << "]" << std::endl;
 }
 
+// Atualiza a pontuacao de cada jogador
 void update( gs::GameState &gameStart){
 
 	std::string nome;
@@ -119,6 +128,7 @@ void update( gs::GameState &gameStart){
 
 	int lastValue = gameStart.get_lastValue();
 
+	// Só adiciona os pontos se o valor for válido ( diferente de 1 )
 	if( lastValue != 1){
 
 		if(nome == jogador1){
@@ -141,6 +151,4 @@ void update( gs::GameState &gameStart){
 	gameStart.player1.setPontuacao(0);
 	gameStart.player2.setPontuacao(0);
 	
-
-
 }

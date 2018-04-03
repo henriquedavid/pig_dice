@@ -1,3 +1,5 @@
+// Arquivo relacionado ao funcionamento da IA do jogo.
+
 namespace sys{
 	struct IA
 	{
@@ -14,6 +16,7 @@ namespace sys{
 			return IA_name;
 		}
 
+		// Define as jogadas realizada pela IA
 		nome jogada_IA( pt::Pontos pontos ){
 
 			float media = 1;
