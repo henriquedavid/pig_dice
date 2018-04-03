@@ -9,8 +9,10 @@
 #include "state.h"
 #include "dice.h"
 #include "pontuations.h"
+#include "ia.h"
 #include "game_status.h"
 #include "functions_main.h"
+
 
 void passUser();
 int rollDice();

@@ -9,8 +9,8 @@ namespace gs{
 
 		enum class seed_type_e : short int { RANDOM = 0, CLIENT_DEFINED};
 
-		// Declaraoes
-		pl::player player1;		// declara um jogador 1
+		// Declaracoes
+		pl::Player player1;		// declara um jogador 1
 		pl::Player player2;		// declara jogador 2
 
 		pd::Dice dice;		// declara o jogo
@@ -19,9 +19,17 @@ namespace gs{
 
 		gm::Estado estado_game;		// gerar os estados do jogo
 
-		int state_game = -1;	// 0 - Inicia | 1 - Jogador 1 | 2 - Jogador 2 | 3 - Game Over
+		sys::IA IA_game;
+
+		int state_game = 0;	// 0 - Inicia | 1 - Jogador 1 | 2 - Jogador 2 | 3 - Game Over
+
+		int ultimo_valor = 0;
 
 		// Métodos
+
+		int get_lastValue(){
+			return ultimo_valor;
+		}
 		
 		// Recebe qual o estado atual do jogo
 		void stateGame(){
@@ -63,21 +71,25 @@ namespace gs{
 		void action_Game( std::string acao ){
 			if(acao == "Roll"){
 				int value = rollDice();
+				ultimo_valor = value;
 
 				std::cout << "Valor : " << value << std::endl;
 				auto nomeJogador = estado_game.getJogador();
 
-				if(nomeJogador == player1.getNome()){
-					player1.addPontuacao(value);
-				} else{
-					player2.addPontuacao(value);
-				}
+				if( value != 1){
 
-				if(value == 1){
+					if(nomeJogador == player1.getNome()){
+						player1.addPontuacao(value);
+					} else{
+						player2.addPontuacao(value);
+					}
+
+				} else{
 					
 					player1.setPontuacao(0);
 					player2.setPontuacao(0);
 					passUser();
+
 				}
 
 			} else if( acao == "Hold") {

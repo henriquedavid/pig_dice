@@ -19,9 +19,13 @@ void process_events( gs::GameState &gameStart){
 	
 		std::cin >> recebe_acao;
 		
+		
+	} else{
+
+		recebe_acao = gameStart.IA_game.jogada_IA(gameStart.pontos_game);
 	}
 
-	gameStart.action_Game(recebe_acao);
+	gameStart.action_Game(recebe_acao);	
 
 	std::cout << std::endl;
 
@@ -81,7 +85,7 @@ void render_winner( gs::GameState &gameStart ){
 	std::string nomeJWinner;
 	nomeJWinner = gameStart.estado_game.getJogador();
 	std::cout << "\n\n>>>>>>    TEMOS UM VENCEDOR    <<<<<<\n";
-	std::cout << "Vencedor:" << nomeJWinner << std::endl;
+	std::cout << "Vencedor:  " << nomeJWinner << std::endl;
 	std::cout << "Ganhou com " ;
 
 	if( nomeJWinner == gameStart.player1.getNome())
@@ -113,21 +117,26 @@ void update( gs::GameState &gameStart){
 
 	std::string jogador1 = gameStart.player1.getNome();
 
-	if(nome == jogador1){
+	int lastValue = gameStart.get_lastValue();
 
-		int pont_jogador_1 = gameStart.player1.getPontuacao();
-		gameStart.pontos_game.addPont_J1(pont_jogador_1);
-		gameStart.pontos_game.addPointL1( pont_jogador_1 );
+	if( lastValue != 1){
 
-	} else{
+		if(nome == jogador1){
 
-		int pont_jogador_2 = gameStart.player2.getPontuacao();
-		gameStart.pontos_game.addPont_J2(pont_jogador_2);
-		gameStart.pontos_game.addPointL2( pont_jogador_2 );
+			int pont_jogador_1 = gameStart.player1.getPontuacao();
+			gameStart.pontos_game.addPont_J1(pont_jogador_1);
+			gameStart.pontos_game.addPointL1( pont_jogador_1 );
+
+		} else{
+
+			int pont_jogador_2 = gameStart.player2.getPontuacao();
+			gameStart.pontos_game.addPont_J2(pont_jogador_2);
+			gameStart.pontos_game.addPointL2( pont_jogador_2 );
+
+		}
 
 	}
 
-	// gameStart.add_pontos_all(pont_jogador_1, pont_jogador_2);
 
 	gameStart.player1.setPontuacao(0);
 	gameStart.player2.setPontuacao(0);

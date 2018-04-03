@@ -54,6 +54,12 @@ namespace pt{
 		lista getL2(){
 			return pontuacoes_jogador2;
 		}
+
+		// Retorna qual a soma das pontuacoes dos jogadores
+		int getTotal_points(){
+			int soma  = pontuacao_totalJ1 + pontuacao_totalJ2;
+			return soma;
+		}
 		
 	};
 }
