@@ -27,6 +27,7 @@ namespace gs{
 
 		// Métodos
 
+		// Retorna o último valor do dado.
 		int get_lastValue(){
 			return ultimo_valor;
 		}
@@ -36,9 +37,11 @@ namespace gs{
 
 			int pontA, pontB;
 
+			// Recebe a pontuação de cada jogador.
 			pontA = pontos_game.getPont_J1();
 			pontB = pontos_game.getPont_J2();
 
+			// Verifica se algum jogador atigiu mais/igual 100 pontos.
 			if(pontA < 100 && pontB < 100){
 				state_game = true;
 			} else{
@@ -61,6 +64,7 @@ namespace gs{
 		void passUser(){
 			names jog = estado_game.getJogador();
 
+			// Verifica se o jogador da partida é o 1 ou o 2 e muda o jogador.
 			if(jog == player1.getNome())
 				estado_game.setJogador( player2 );
 			else
@@ -69,15 +73,24 @@ namespace gs{
 
 		// Atribui uma ação, rolar ou passar a vez.
 		void action_Game( std::string acao ){
+			
+			// Recupera o jogador da partida.
+			auto nomeJogador = estado_game.getJogador();
+			
+
+			// Verifica se a ação inserida pelo jogador foi Roll ou Hold
 			if(acao == "Roll"){
+				// Recebe o valor do dado.
 				int value = rollDice();
+				// Atribui para o último valor.
 				ultimo_valor = value;
 
+				// Informa qual foi o valor.
 				std::cout << "Valor : " << value << std::endl;
-				auto nomeJogador = estado_game.getJogador();
 
+				// Realiza validação se o jogador tirou 1.
 				if( value != 1){
-
+					// Aplica a pontuação para o jogador.
 					if(nomeJogador == player1.getNome()){
 						player1.addPontuacao(value);
 					} else{
@@ -86,17 +99,28 @@ namespace gs{
 
 				} else{
 					
+					// Configura a pontuação para 0;
 					player1.setPontuacao(0);
 					player2.setPontuacao(0);
+
+					// Muda o jogador.
 					passUser();
 
 				}
 
 			} else if( acao == "Hold") {
 
+				// Configura o valor de backup
+				if( nomeJogador == player1.getNome() )
+					pontos_game.setPont_B1( pontos_game.getPont_J1() );
+				else
+					pontos_game.setPont_B2( pontos_game.getPont_J2() );
+
+				// Muda o jogador.
 				passUser();
 
 			} else{
+				// Solicita ao usuário uma escolha válida.
 				std::cout << "\nA ação não é válida!" << std::endl;
 				std::cout <<"Roll or Hold ?" << std::endl;
 				std::string valor;

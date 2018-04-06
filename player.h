@@ -3,10 +3,11 @@
 namespace pl{
 	struct Player
 	{
+		// Alias
 		typedef std::string name;
 		typedef size_t pont;
 		
-
+		// Declaracoes
 		name nome_jogador;
 		name tipo_jogador;
 		pont pontuacao;

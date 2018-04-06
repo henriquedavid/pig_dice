@@ -13,6 +13,9 @@ namespace pt{
 		ponto pontuacao_totalJ1 = 0;
 		ponto pontuacao_totalJ2 = 0;
 
+		ponto pontuacao_totalJ1_backup = 0;
+		ponto pontuacao_totalJ2_backup = 0;
+
 		// Métodos
 
 		//	Adicionar pontuacao ao primeiro jogador
@@ -21,8 +24,18 @@ namespace pt{
 		}
 
 		// Receber a quantidade de pontos
-		int getPont_J1(){
+		ponto getPont_J1(){
 			return pontuacao_totalJ1;
+		}
+
+		// Atualiza os pontos de backup quando o jogador passa
+		void setPont_B1(ponto value){
+			pontuacao_totalJ1_backup = value;
+		}
+
+		// Modifica a pontuacao do jogador 1
+		void setPont_J1(){
+			pontuacao_totalJ1 = pontuacao_totalJ1_backup;
 		}
 
 		// Adicionar pontuacao ao segundo jogador
@@ -31,17 +44,27 @@ namespace pt{
 		}
 
 		// Receber a pontuacao do segundo jogador
-		int getPont_J2(){
+		ponto getPont_J2(){
 			return pontuacao_totalJ2;
 		}
 
+		// Atualiza os pontos de backup quando o jogador passa
+		void setPont_B2(ponto value){
+			pontuacao_totalJ2_backup = value;
+		}
+
+		// Modifica a pontuacao do jogador 2
+		void setPont_J2(){
+			pontuacao_totalJ2 = pontuacao_totalJ2_backup;
+		}
+
 		// Adicionar a pontuacao do jogador 1 em uma lista
-		void addPointL1(int valor){
+		void addPointL1(ponto valor){
 			pontuacoes_jogador1.push_back(valor);
 		}
 
 		// Adicionar a pontuacao do jogador 2 em uma lista
-		void addPointL2( int valor ){
+		void addPointL2( ponto valor ){
 			pontuacoes_jogador2.push_back(valor);
 		}
 
@@ -56,8 +79,8 @@ namespace pt{
 		}
 
 		// Retorna qual a soma das pontuacoes dos jogadores
-		int getTotal_points(){
-			int soma  = pontuacao_totalJ1 + pontuacao_totalJ2;
+		ponto getTotal_points(){
+			ponto soma  = pontuacao_totalJ1 + pontuacao_totalJ2;
 			return soma;
 		}
 		
