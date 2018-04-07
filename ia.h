@@ -38,18 +38,29 @@ namespace sys{
 			// Calcula a media dos pontos da IA e dos pontos totais de ambos jogadores.
 			media = (pontosIA*100 / pontosTotal);
 			
-			std::cout << "A média é : " << media << std::endl;
 
 			// Verifica a média e cria uma árvore de decisão
 			if( media > 90 ){
 
-				// pontosJ1 - 20 <= pontosIA <= pontosJ1 + 20
-				if( ( pontosJ1 - 20 ) <= pontosIA && pontosIA <= ( pontosJ1 + 20 ) )
-					return "Roll";
-
 				return "Hold";				
 
 			}  else{
+
+
+				if( pontosIA <= pontosJ1)
+					return "Roll";
+
+				if( media <= 20)
+					return "Hold";
+				
+				if( pontosIA >= (pontosJ1 + 15) )
+					return "Hold";
+
+				if(pontosIA >= 25)
+					return "Hold";
+				
+				if( ( pontosJ1 - 20 ) <= pontosIA && pontosIA <= ( pontosJ1 + 20 ) )
+					return "Roll";
 				
 				return "Roll";
 			}
