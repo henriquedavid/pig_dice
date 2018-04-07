@@ -1,0 +1,59 @@
+\hypertarget{structpd_1_1Dice}{}\section{pd\+:\+:Dice Struct Reference}
+\label{structpd_1_1Dice}\index{pd\+::\+Dice@{pd\+::\+Dice}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structpd_1_1Dice_a341b549359c5757352481bbfba56b1b3}\label{structpd_1_1Dice_a341b549359c5757352481bbfba56b1b3}} 
+enum {\bfseries seed\+\_\+type\+\_\+e} \+: short int \{ {\bfseries R\+A\+N\+D\+OM} = 0, 
+{\bfseries C\+L\+I\+E\+N\+T\+\_\+\+D\+E\+F\+I\+N\+ED}
+ \}
+\item 
+\mbox{\Hypertarget{structpd_1_1Dice_ace51e9e55fc4fbf9af1872981bdaaa14}\label{structpd_1_1Dice_ace51e9e55fc4fbf9af1872981bdaaa14}} 
+typedef size\+\_\+t \hyperlink{structpd_1_1Dice_ace51e9e55fc4fbf9af1872981bdaaa14}{face\+\_\+t}
+\begin{DoxyCompactList}\small\item\em $<$ A\+L\+I\+AS \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structpd_1_1Dice_adf7b3058b5000a878a5c01200bfe3a04}\label{structpd_1_1Dice_adf7b3058b5000a878a5c01200bfe3a04}} 
+typedef size\+\_\+t {\bfseries seed\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{structpd_1_1Dice_a92e8fb97036501a707952d377d682e70}{set\+\_\+dice} (size\+\_\+t n\+\_\+faces=6, seed\+\_\+type\+\_\+e st=seed\+\_\+type\+\_\+e\+::\+R\+A\+N\+D\+OM, seed\+\_\+t seed=1)
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Joga\char`\"{} o dado \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structpd_1_1Dice_a3680c2f25a57455526d2d01e51e5bc95}\label{structpd_1_1Dice_a3680c2f25a57455526d2d01e51e5bc95}} 
+\hyperlink{structpd_1_1Dice_ace51e9e55fc4fbf9af1872981bdaaa14}{face\+\_\+t} {\bfseries roll} (void)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structpd_1_1Dice_a3c86df0629f7385ee703ab013ad6a5fb}\label{structpd_1_1Dice_a3c86df0629f7385ee703ab013ad6a5fb}} 
+std\+::mt19937 {\bfseries gen}
+\item 
+std\+::uniform\+\_\+int\+\_\+distribution$<$ int $>$ \hyperlink{structpd_1_1Dice_ae903af79a820c4e6fcd9364f33563f62}{dis}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structpd_1_1Dice_a92e8fb97036501a707952d377d682e70}\label{structpd_1_1Dice_a92e8fb97036501a707952d377d682e70}} 
+\index{pd\+::\+Dice@{pd\+::\+Dice}!set\+\_\+dice@{set\+\_\+dice}}
+\index{set\+\_\+dice@{set\+\_\+dice}!pd\+::\+Dice@{pd\+::\+Dice}}
+\subsubsection{\texorpdfstring{set\+\_\+dice()}{set\_dice()}}
+{\footnotesize\ttfamily void pd\+::\+Dice\+::set\+\_\+dice (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n\+\_\+faces = {\ttfamily 6},  }\item[{seed\+\_\+type\+\_\+e}]{st = {\ttfamily seed\+\_\+type\+\_\+e\+:\+:RANDOM},  }\item[{seed\+\_\+t}]{seed = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\char`\"{}\+Joga\char`\"{} o dado 
+
+$<$ Verifica se o tipo escolhido é do tipo randomico 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structpd_1_1Dice_ae903af79a820c4e6fcd9364f33563f62}\label{structpd_1_1Dice_ae903af79a820c4e6fcd9364f33563f62}} 
+\index{pd\+::\+Dice@{pd\+::\+Dice}!dis@{dis}}
+\index{dis@{dis}!pd\+::\+Dice@{pd\+::\+Dice}}
+\subsubsection{\texorpdfstring{dis}{dis}}
+{\footnotesize\ttfamily std\+::uniform\+\_\+int\+\_\+distribution$<$int$>$ pd\+::\+Dice\+::dis}
+
+MÉ\+T\+O\+D\+OS Configura o dado 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/dice.\+h\end{DoxyCompactItemize}
