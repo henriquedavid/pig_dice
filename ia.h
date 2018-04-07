@@ -47,6 +47,9 @@ namespace sys{
 			}  else{
 
 
+				if( pontosIA >= (pontosJ1 + 40))
+					return "Roll";
+
 				if( pontosIA <= pontosJ1)
 					return "Roll";
 
